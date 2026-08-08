@@ -28,7 +28,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t nextwork-web-project .'
+                bat 'where docker'
             }
         }
 
