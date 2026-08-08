@@ -28,16 +28,16 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'where docker'
+                bat '"C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" build -t nextwork-web-project .'
             }
         }
 
         stage('Run Docker Container') {
             steps {
                 bat '''
-                docker stop nextwork-container || exit 0
-                docker rm nextwork-container || exit 0
-                docker run -d --name nextwork-container -p 8083:8080 nextwork-web-project
+                "C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" stop nextwork-container || exit 0
+                "C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" rm nextwork-container || exit 0
+                "C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" run -d --name nextwork-container -p 8083:8080 nextwork-web-project
                 '''
             }
         }
