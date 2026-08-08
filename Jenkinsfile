@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven3'
+        maven 'Maven'
     }
 
     stages {
@@ -15,7 +15,8 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                checkout scm
+                git branch: 'master',
+                    url: 'https://github.com/nitishkumar-IT/nextwork-web-project.git'
             }
         }
 
@@ -30,19 +31,28 @@ pipeline {
                 archiveArtifacts artifacts: 'target/*.war', fingerprint: true
             }
         }
+
+        stage('Deploy to Tomcat') {
+            steps {
+                bat '''
+                copy /Y target\\nextwork-web-project.war C:\\Apache\\apache-tomcat-11.0.24\\webapps\\
+                '''
+            }
+        }
+
     }
 
     post {
         success {
-            echo 'Build completed successfully!'
+            echo 'Deployment completed successfully!'
         }
 
         failure {
-            echo 'Build failed!'
+            echo 'Build or Deployment failed!'
         }
 
         always {
-            echo 'Pipeline execution finished.'
+            echo 'Pipeline finished.'
         }
     }
 }
