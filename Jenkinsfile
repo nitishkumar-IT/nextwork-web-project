@@ -26,16 +26,18 @@ pipeline {
             }
         }
 
-        stage('Archive Artifact') {
+        stage('Build Docker Image') {
             steps {
-                archiveArtifacts artifacts: 'target/*.war', fingerprint: true
+                bat 'docker build -t nextwork-web-project .'
             }
         }
 
-        stage('Deploy to Tomcat') {
+        stage('Run Docker Container') {
             steps {
                 bat '''
-                copy /Y target\\nextwork-web-project.war C:\\Apache\\apache-tomcat-11.0.24\\webapps\\
+                docker stop nextwork-container || exit 0
+                docker rm nextwork-container || exit 0
+                docker run -d --name nextwork-container -p 8083:8080 nextwork-web-project
                 '''
             }
         }
@@ -44,11 +46,11 @@ pipeline {
 
     post {
         success {
-            echo 'Deployment completed successfully!'
+            echo 'Docker deployment successful!'
         }
 
         failure {
-            echo 'Build or Deployment failed!'
+            echo 'Build failed!'
         }
 
         always {
