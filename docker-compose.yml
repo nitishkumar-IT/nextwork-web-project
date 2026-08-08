@@ -1,0 +1,8 @@
+version: "3.9"
+
+services:
+  nextwork-app:
+    image: nextwork-web-project
+    container_name: nextwork-container
+    ports:
+      - "8083:8080"
