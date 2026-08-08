@@ -35,7 +35,6 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 bat '''
-                "C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" stop nextwork-container || exit 0
                 "C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" rm nextwork-container || exit 0
                 "C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" run -d --name nextwork-container -p 8083:8080 nextwork-web-project
                 '''
