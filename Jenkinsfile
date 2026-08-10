@@ -35,13 +35,18 @@ pipeline {
         stage('Run Docker Compose') {
             steps {
                 bat '''
-                "C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" compose down
-                "C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" compose up -d
-                '''
+                "C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker-compose.exe" down
+                "C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker-compose.exe" up -d
+             '''
             }
         }
     }
-
+stage('Run Docker Compose') {
+    steps {
+        bat '''
+        '''
+    }
+}
     post {
         success {
             echo 'Docker deployment successful!'
