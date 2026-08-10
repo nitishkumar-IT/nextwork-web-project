@@ -41,12 +41,7 @@ pipeline {
             }
         }
     }
-stage('Run Docker Compose') {
-    steps {
-        bat '''
-        '''
-    }
-}
+
     post {
         success {
             echo 'Docker deployment successful!'
