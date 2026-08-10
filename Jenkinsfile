@@ -32,15 +32,14 @@ pipeline {
             }
         }
 
-        stage('Run Docker Container') {
+        stage('Run Docker Compose') {
             steps {
                 bat '''
-                "C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" rm nextwork-container || exit 0
-                "C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" run -d --name nextwork-container -p 8083:8080 nextwork-web-project
+                "C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" compose down
+                "C:\\Users\\NITISHKUMAR\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" compose up -d
                 '''
             }
         }
-
     }
 
     post {
