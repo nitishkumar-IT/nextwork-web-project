@@ -155,7 +155,7 @@
     </div>
 
     <footer>
-        © 2026 Nitishkumar Dharmendran | Java + Maven + DevOps Project
+        © 2026 Nitishkumar Dharmendran
     </footer>
 
 </body>
